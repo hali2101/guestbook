@@ -6,18 +6,18 @@ using System.IO;
 
 namespace guestbook
 {
-	public class PostStore
-	{
+    public class PostStore
+    {
         //spara filnamn i variabel
         private string filename = @"poststore.json";
         //skapar en ny lista
         private List<Post> posts = new List<Post>();
 
-		//funktion för att kontrollera om filen existera och spara till lista
+        //konstruerare för att kontrollera om filen existerar och spara till lista
         public PostStore()
-		{
+        {
             if (File.Exists(@"poststore.json") == true)
-            { 
+            {
                 string jsonString = File.ReadAllText(filename);
                 posts = JsonSerializer.Deserialize<List<Post>>(jsonString)!;
             }
@@ -26,15 +26,15 @@ namespace guestbook
         public Post AddPost(Post post)
         {
             posts.Add(post);
-            Marshal();
+            Storedata();
             return post;
         }
-        
+
         //funktion för radera posten i jsonfilen
         public int DelPost(int index)
         {
             posts.RemoveAt(index);
-            Marshal();
+            Storedata();
             return index;
         }
         //hämtar alla poster i listan
@@ -42,7 +42,8 @@ namespace guestbook
         {
             return posts;
         }
-        private void Marshal()
+        //metod för att serialisera data till jsonfilen
+        private void Storedata()
         {
             // serialisera alla och hämta listan från json-filen
             var jsonString = JsonSerializer.Serialize(posts);
