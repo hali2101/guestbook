@@ -12,7 +12,7 @@ class Program
         {
             //rensar skärmen
             Console.Clear();
-            //visar var markören är på skärmen
+
             Console.CursorVisible = false;
             //frågor som loopas igenom
             Console.WriteLine("GÄSTBOKEN\n\n");
@@ -74,7 +74,7 @@ class Program
                     poststore.DelPost(Convert.ToInt32(index));
                     break;
                 case 88:
-                //bryter loopen
+                    //bryter loopen
                     Environment.Exit(0);
                     break;
             }
